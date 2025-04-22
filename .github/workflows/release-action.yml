@@ -1,0 +1,55 @@
+name: Build and Release
+
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name for the release (e.g., v1.0.0).'
+        required: true
+        default: 'v1.0.0'
+      release_description:
+        description: 'Description for the release.'
+        required: true
+        default: 'Release description goes here.'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore PoeFixer.sln
+
+      - name: Build project
+        run: dotnet build PoeFixer.sln --configuration Release
+
+      - name: Publish project
+        run: dotnet publish PoeFixer.csproj -c Release -o ./output
+
+      - run: Compress-Archive -Path ./output/* -Destination sneedsmoother.zip
+
+      - name: Create a tag
+        run: |
+          git tag ${{ github.event.inputs.tag_name }}
+          git push origin ${{ github.event.inputs.tag_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.event.inputs.tag_name }}
+          body: ${{ github.event.inputs.release_description }}
+          files: sneedsmoother.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
