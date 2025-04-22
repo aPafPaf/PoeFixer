@@ -18,8 +18,8 @@ public class ZoomPatch : IPatch
         "metadata/terrain/testareas/programming/objects/zoom_node.otc",
         "metadata/monsters/atlasexiles/orionarenaobjects/orionapparitionhideout.otc" // When he spawns there's a clear zoom node.
         ];
-    // adds "metadata/monsters/", "metadata/terrain/"
-    public string[] DirectoriesToPatch => ["metadata/miscellaneousobjects/camerazoom/", "metadata/monsters/", "metadata/terrain/"];
+    // adds "metadata"
+    public string[] DirectoriesToPatch => ["metadata/miscellaneousobjects/camerazoom/", "metadata"];
 
     public bool ShouldPatch(Dictionary<string, bool> bools, Dictionary<string, float> floats)
     {
