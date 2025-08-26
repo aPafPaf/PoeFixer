@@ -43,13 +43,20 @@ public partial class MainWindow : Window
         }
 
         // Check if ggpk extension is .ggpk.
-        if (GGPKPath.EndsWith(".ggpk"))
+        try
         {
-            BundledGGPK ggpk = new(GGPKPath, false);
-            PatchManager manager = new(ggpk.Index, this);
-            int count = manager.RestoreExtractedAssets();
-            ggpk.Dispose();
-            EmitToConsole($"{count} assets restored.");
+            if (GGPKPath.EndsWith(".ggpk"))
+            {
+                BundledGGPK ggpk = new(GGPKPath, false);
+                PatchManager manager = new(ggpk.Index, this);
+                int count = manager.RestoreExtractedAssets();
+                ggpk.Dispose();
+                EmitToConsole($"{count} assets restored.");
+            }
+        }
+        catch (Exception ex)
+        {
+            EmitToConsole($"Error Restore: {ex.Message}");
         }
 
         if (GGPKPath.EndsWith(".bin"))
@@ -70,11 +77,18 @@ public partial class MainWindow : Window
             return;
         }
 
-        if (GGPKPath.EndsWith(".ggpk"))
+        try
         {
-            FileExtractor extractor = new(this, GGPKPath);
-            int count = extractor.ExtractFiles();
-            EmitToConsole($"{count} assets extracted.");
+            if (GGPKPath.EndsWith(".ggpk"))
+            {
+                FileExtractor extractor = new(this, GGPKPath);
+                int count = extractor.ExtractFiles();
+                EmitToConsole($"{count} assets extracted.");
+            }
+        }
+        catch (Exception ex)
+        {
+            EmitToConsole($"Error Extract: {ex.Message}");
         }
 
         if (GGPKPath.EndsWith(".bin"))
@@ -113,13 +127,20 @@ public partial class MainWindow : Window
         Stopwatch sw = new();
         sw.Start();
 
-        if (GGPKPath.EndsWith(".ggpk"))
+        try
         {
-            BundledGGPK ggpk = new(GGPKPath, false);
-            PatchManager manager = new(ggpk.Index, this);
-            int count = manager.Patch();
-            ggpk.Dispose();
-            EmitToConsole($"{count} assets patched.");
+            if (GGPKPath.EndsWith(".ggpk"))
+            {
+                BundledGGPK ggpk = new(GGPKPath, false);
+                PatchManager manager = new(ggpk.Index, this);
+                int count = manager.Patch();
+                ggpk.Dispose();
+                EmitToConsole($"{count} assets patched.");
+            }
+        }
+        catch (Exception ex)
+        {
+            EmitToConsole($"Error Patching: {ex.Message}");
         }
 
         if (GGPKPath.EndsWith(".bin"))

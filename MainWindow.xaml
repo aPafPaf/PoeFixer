@@ -8,11 +8,8 @@
         Title="SneedSmoother" Height="600" Width="800" Icon="/cigar.ico" ResizeMode="NoResize">
     <Grid x:Name="mainGrid">
         <Button Content="Select GGPK" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="SelectGGPK"/>
-
         <Button Content="Patch" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="75" Click="PatchGGPK"/>
-
         <Button Content="Extract Vanilla Assets" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Width="140" Click="ExtractVanillaAssets"/>
-
         <Button Content="Restore Vanilla Assets" HorizontalAlignment="Left" Margin="10,245,0,0" VerticalAlignment="Top" Width="140" Click="RestoreExtractedAssets"/>
 
         <TextBox x:Name="Console" Background="LightBlue" HorizontalAlignment="Left" Height="150" Margin="10,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" IsReadOnly="True" FontSize="10"/>
@@ -20,21 +17,36 @@
         <!--Settings-->
         <CheckBox x:Name="zoomEnabled" Content="Zoom" HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top"/>
         <Slider x:Name="zoomSlider" HorizontalAlignment="Left" Margin="370,10,0,0" VerticalAlignment="Top" Width="120" Maximum="3" Minimum="1" TickPlacement="BottomRight" TickFrequency="0.2" SmallChange="0.2" Value="1" AutoToolTipPlacement="TopLeft" LargeChange="0.2" IsSnapToTickEnabled="True"/>
+        <CheckBox x:Name="removeAtlasFogOfWar" Content="Remove Atlas Fog" HorizontalAlignment="Left" Margin="300,30,0,0" VerticalAlignment="Top" ToolTip="Removes the fog of war shader in the atlas."/>
+        
+        <Label Content="Custom" HorizontalAlignment="Left" Margin="5,260,0,0" VerticalAlignment="Top"></Label>
+        <CheckBox x:Name="replaceMtx" Content="Replace Skill Effects From Json" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="removeGoblins" Content="Remove Crying Baby And Goblins" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="colorModsEnabled" Content="Color Mods" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="removeLoadingScreen" Content="Invisible Loading Screen" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="removeParticles" Content="Remove Particles (Literally All, Experimental)" HorizontalAlignment="Left" Margin="10,360,0,0" VerticalAlignment="Top"/>
 
-        <CheckBox x:Name="removeFog" Content="Remove Fog (From Zoom)" HorizontalAlignment="Left" Margin="300,200,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="removeShadows" Content="Remove Sun Shadows" HorizontalAlignment="Left" Margin="300,180,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="colorModsEnabled" Content="Color Mods" HorizontalAlignment="Left" Margin="300,70,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="removeParticles" Content="Remove Particles (Literally All, Experimental)" HorizontalAlignment="Left" Margin="300,90,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="revealEnabled" Content="Reveal Map" HorizontalAlignment="Left" Margin="300,110,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="removeLoadingScreen" Content="Invisible Loading Screen" HorizontalAlignment="Left" Margin="300,130,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="removeLight" Content="Remove Lights" HorizontalAlignment="Left" Margin="300,160,0,0" VerticalAlignment="Top"/>
+        <Label Content="Area" HorizontalAlignment="Left" Margin="295,60,0,0" VerticalAlignment="Top"></Label>
+        <CheckBox x:Name="removeFog" Content="Remove Fog (From Zoom)" HorizontalAlignment="Left" Margin="300,80,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="revealEnabled" Content="Reveal Map" HorizontalAlignment="Left" Margin="300,100,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="removeWater" Content="Remove Water Effects" HorizontalAlignment="Left" Margin="300,120,0,0" VerticalAlignment="Top" IsEnabled="False" ToolTip="I don't know if it makes sense, so it's disabled for now. "/>
+        <CheckBox x:Name="removeRain" Content="Remove Rain Effects" HorizontalAlignment="Left" Margin="300,140,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="removeCloud" Content="Remove Cloud" HorizontalAlignment="Left" Margin="300,160,0,0" VerticalAlignment="Top"/>
 
-        <CheckBox x:Name="removeCorpses" Content="Remove Corpses" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="removeShatter" Content="Remove Shatter" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="removeBloom" Content="Remove Bloom" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="replaceMtx" Content="Replace Skill Effects From Json" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="removeGoblins" Content="Remove Crying Baby And Goblins" HorizontalAlignment="Left" Margin="10,360,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="removeDelirium" Content="Remove Delirium Effects" HorizontalAlignment="Left" Margin="10,380,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="removeAtlasFogOfWar" Content="Remove Atlas Fog" HorizontalAlignment="Left" Margin="300,220,0,0" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
+        <Label Content="Light" HorizontalAlignment="Left" Margin="295,260,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="playerLightEnabled" Content="Player Light" HorizontalAlignment="Left" Margin="300,280,0,0" VerticalAlignment="Top" ToolTip="How brightly the character glows. You are literally a light bulb."/>
+        <Slider x:Name="playerLightSlider" HorizontalAlignment="Left" Margin="400,280,0,0" VerticalAlignment="Top" Width="120" Maximum="100" Minimum="0" TickPlacement="BottomRight" TickFrequency="0.1" SmallChange="0.1" Value="1" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision ="2"  LargeChange="0.2" IsSnapToTickEnabled="True"/>
+        <Label x:Name="playerLightValueText" HorizontalAlignment="Left" Margin="530,280,0,0" VerticalAlignment="Top" Content="{Binding Value, ElementName=playerLightSlider, StringFormat={}{0:F2}}" Width="40"/>
+        <CheckBox x:Name="removeShadows" Content="Remove Sun Shadows" HorizontalAlignment="Left" Margin="300,300,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="removeLight" Content="Remove Lights" HorizontalAlignment="Left" Margin="300,320,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="removeBloom" Content="Remove Bloom" HorizontalAlignment="Left" Margin="300,340,0,0" VerticalAlignment="Top"/>
+        
+        <Label Content="Effect" HorizontalAlignment="Left" Margin="5,420,0,0" VerticalAlignment="Top"></Label>
+        <CheckBox x:Name="removeCorpses" Content="Remove Corpses" HorizontalAlignment="Left" Margin="10,440,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="removeShatter" Content="Remove Shatter" HorizontalAlignment="Left" Margin="10,460,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="removeDelirium" Content="Remove Delirium Effects" HorizontalAlignment="Left" Margin="10,480,0,0" VerticalAlignment="Top"/>
+
+        <Label Content="Audio" HorizontalAlignment="Left" Margin="305,420,0,0" VerticalAlignment="Top"></Label>
+        <CheckBox x:Name="removeAudio" Content="Remove Ambient Sound" HorizontalAlignment="Left" Margin="310,440,0,0" VerticalAlignment="Top" ToolTip="Removes ambient music and sounds in the area. Does not remove object sounds."/>
     </Grid>
 </Window>
